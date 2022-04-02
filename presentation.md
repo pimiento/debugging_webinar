@@ -1,12 +1,11 @@
 # Кен Томпсон
 
 
-##       :B_block:BMCOL:
-
+##
 <span class="underline"><span class="underline">[Wiki](https://ru.wikipedia.org/wiki/%25D0%25A2%25D0%25BE%25D0%25BC%25D0%25BF%25D1%2581%25D0%25BE%25D0%25BD,_%25D0%259A%25D0%25B5%25D0%25BD)</span></span>
 
 
-## Томпсон     :B_block:BMCOL:
+## Томпсон
 
 ![img](Thompson.jpg)
 
@@ -45,7 +44,7 @@ if __name__ == "__main__":
 ```
 
 
-## \_     :B_ignoreheading:
+##
 
 ```shell
 python -m pdb ./myobj.py
@@ -114,6 +113,13 @@ except:
 -   **cl(ear) (filename:lineno | bpnumber):** удалить точку останова
 
 
+# Дополнительное чтение
+
+-   <span class="underline"><span class="underline">[import pdb](https://docs.python.org/3/library/pdb.html)</span></span>
+-   <span class="underline"><span class="underline">[pdb — интерактивный отладчик](https://habr.com/ru/post/104086/?ysclid=l1dacrrmk3)</span></span>
+-   <span class="underline"><span class="underline">[python debugging with pdb](https://realpython.com/python-debugging-pdb/)</span></span>
+
+
 # PuDB
 
 ```shell
@@ -121,6 +127,12 @@ python -m pudb myobj.py
 ```
 
 ![img](pudb.png)
+
+
+# Visual Studio Code / PyCharm
+
+-   <span class="underline"><span class="underline">[VSC](https://docs.microsoft.com/ru-ru/visualstudio/python/debugging-python-in-visual-studio?view=vs-2022)</span></span>
+-   <span class="underline"><span class="underline">[PyCharm](https://www.jetbrains.com/ru-ru/pycharm/features/debugger.html)</span></span>
 
 
 # runserver\_plus
