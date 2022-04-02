@@ -1,0 +1,119 @@
+#+TITLE: Python, отладка
+#+EMAIL: @pvavilin
+#+AUTHOR: @pvavilin
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:https://orgmode.org/org-info.js
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smallest]
+#+LATEX_HEADER: \usetheme{default}
+#+LATEX_HEADER: \usecolortheme{crane}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
+#+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{bg.jpeg}}
+#+OPTIONS: \n:t ^:nil
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+* Кен Томпсон
+**                                                         :B_block:BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.1
+   :END:
+    __[[https://ru.wikipedia.org/wiki/%25D0%25A2%25D0%25BE%25D0%25BC%25D0%25BF%25D1%2581%25D0%25BE%25D0%25BD,_%25D0%259A%25D0%25B5%25D0%25BD][Wiki]]__
+** Томпсон                                                    :B_block:BMCOL:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :BEAMER_col: 0.9
+   :END:
+    #+ATTR_LATEX: :width .35\textwidth
+    [[file:Thompson.jpg]]
+* print
+  #+BEGIN_QUOTE
+  Сейбел: Какие инструменты вы используете при отладке?
+
+  Томпсон: В основном вывод на печать. При разработке программы я размещаю очень много операторов вывода на печать.
+
+  #+END_QUOTE
+* Чуть лучше чем принт
+  __[[https://docs.python.org/3/library/logging.html][logging]]__
+  - Во время разработки можно выводить сообщения на экран
+  - В продакшене, пишем сообщения уже в логгер (syslog, просто в файл)
+  - Можем настраивать режими отладки
+* PDB
+** myobj.py :B_block:
+   :PROPERTIES:
+   :BEAMER_env: block
+   :END:
+   #+BEGIN_SRC python :exports code :tangle "myobj.py" :shebang "#!/usr/bin/env python3"
+     from dataclasses import dataclass
+     @dataclass
+     class MyObj:
+         n: int
+         def go(self):
+             for i in range(self.n):
+                 print(i)
+     if __name__ == "__main__":
+         MyObj(5).go()
+   #+END_SRC
+** _ :B_ignoreheading:
+   :PROPERTIES:
+   :BEAMER_env: ignoreheading
+   :END:
+   #+BEGIN_SRC shell :exports code
+     python -m pdb ./myobj.py
+   #+END_SRC
+* PDB
+  Можно вызвать в рамках Python-сессии
+  #+BEGIN_SRC python :exports code
+    import pdb
+    from myobj import MyObj
+
+    pdb.run("MyObj(5).go()")
+  #+END_SRC
+* PDB
+  Чаще всего может потребоваться перейти в режим отладки в определённом месте программы
+  #+BEGIN_SRC python :exports code
+    # тут какой-то код
+    def main(request):
+        import pdb # ipdb
+        pdb.set_trace() # ipdb.set_trace()
+        data = request.GET
+    # дальше много кода
+  #+END_SRC
+* PDB
+  #+BEGIN_SRC python :exports code
+    try:
+        some_code()
+    except:
+        import sys
+        import ipdb
+        tb = sys.exc_info()[2]
+        ipdb.post_mortem(tb)
+  #+END_SRC
+* PDB
+  - h(elp) [command] :: выведет подсказку по доступным командам
+  - a(rgs) :: напечать аргументы текущей функции (текущего стека вызовов)
+  - p <expression> :: напечатать содержимое переменной или результат вызова
+  - pp <expression> :: красиво напечатать
+  - w(here) :: покажет стектрейс как вы очутились в текущем месте кода
+  - l(ist) [start [end]] :: выведет по 5 строк вокруг текущей или вокруг заданной, либо выведет строки со start по end
+  - u(p) / d(own) :: перемещение по стеку вызовов
+* PDB
+  - ! выражение :: выполнить выражение, например переопределить значение переменной
+  - s(tep) :: зайти внутрь вызова
+  - n(ext) :: следующая строка кода
+  - b(reak) [ ([filename:]lineno | function) [, condition] ] :: добавить точку останова
+  - disable N :: отключить точку останова
+  - enable N :: включить точку останова
+  - cl(ear) (filename:lineno | bpnumber) ::
+* PuDB
+  #+BEGIN_SRC shell exports code
+    python -m pudb myobj.py
+  #+END_SRC
+  [[file:pudb.png]]
+* runserver_plus
+  __[[https://django-extensions.readthedocs.io/en/latest/installation_instructions.html][installation instruction]]__
+  #+BEGIN_SRC shell :exports code
+    WERKZEUG_DEBUG_PIN=1234 \
+        python manage.py runserver_plus
+  #+END_SRC
