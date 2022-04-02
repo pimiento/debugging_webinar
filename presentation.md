@@ -29,7 +29,7 @@
 # PDB
 
 
-## myobj.py     :B_block:
+## myobj.py
 
 ```python
 from dataclasses import dataclass
