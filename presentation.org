@@ -11,7 +11,7 @@
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
 #+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
 #+LATEX_HEADER: \usebackgroundtemplate{\includegraphics[width=\paperwidth,height=\paperheight]{bg.jpeg}}
-#+OPTIONS: \n:t ^:nil
+#+OPTIONS: \n:t ^:nil toc:nil
 #+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
 * Кен Томпсон
 **                                                         :B_block:BMCOL:
