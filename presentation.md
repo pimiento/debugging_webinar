@@ -1,12 +1,12 @@
 # Кен Томпсон
 
 
-##
+##       :B_block:BMCOL:
 
 <span class="underline"><span class="underline">[Wiki](https://ru.wikipedia.org/wiki/%25D0%25A2%25D0%25BE%25D0%25BC%25D0%25BF%25D1%2581%25D0%25BE%25D0%25BD,_%25D0%259A%25D0%25B5%25D0%25BD)</span></span>
 
 
-## Томпсон
+## Томпсон     :B_block:BMCOL:
 
 ![img](Thompson.jpg)
 
@@ -30,7 +30,7 @@
 # PDB
 
 
-## myobj.py
+## myobj.py     :B_block:
 
 ```python
 from dataclasses import dataclass
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 ```
 
 
-## _
+## \_     :B_ignoreheading:
 
 ```shell
 python -m pdb ./myobj.py
@@ -108,9 +108,10 @@ except:
 -   **s(tep):** зайти внутрь вызова
 -   **n(ext):** следующая строка кода
 -   **b(reak) [ ([filename:]lineno | function) [, condition] ]:** добавить точку останова
--   **disable N:** отключить точку останова
--   **enable N:** включить точку останова
--   **cl(ear) (filename:lineno | bpnumber):**
+-   **tbreak [([filename:]lineno | function) [, condition]]:** одноразовая точка останова
+-   **condition bpnumber [condition]:** добавить условие для точки останова
+-   **disable / enable tbnumber:** выкл / вкл точку останова
+-   **cl(ear) (filename:lineno | bpnumber):** удалить точку останова
 
 
 # PuDB

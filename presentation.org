@@ -103,14 +103,22 @@
   - s(tep) :: зайти внутрь вызова
   - n(ext) :: следующая строка кода
   - b(reak) [ ([filename:]lineno | function) [, condition] ] :: добавить точку останова
-  - disable N :: отключить точку останова
-  - enable N :: включить точку останова
-  - cl(ear) (filename:lineno | bpnumber) ::
+  - tbreak [([filename:]lineno | function) [, condition]] :: одноразовая точка останова
+  - condition bpnumber [condition] :: добавить условие для точки останова
+  - disable / enable tbnumber :: выкл / вкл точку останова
+  - cl(ear) (filename:lineno | bpnumber) :: удалить точку останова
+* Дополнительное чтение
+  - __[[https://docs.python.org/3/library/pdb.html][import pdb]]__
+  - __[[https://habr.com/ru/post/104086/?ysclid=l1dacrrmk3][pdb — интерактивный отладчик]]__
+  - __[[https://realpython.com/python-debugging-pdb/][python debugging with pdb]]__
 * PuDB
   #+BEGIN_SRC shell exports code
     python -m pudb myobj.py
   #+END_SRC
   [[file:pudb.png]]
+* Visual Studio Code / PyCharm
+  - __[[https://docs.microsoft.com/ru-ru/visualstudio/python/debugging-python-in-visual-studio?view=vs-2022][VSC]]__
+  - __[[https://www.jetbrains.com/ru-ru/pycharm/features/debugger.html][PyCharm]]__
 * runserver_plus
   __[[https://django-extensions.readthedocs.io/en/latest/installation_instructions.html][installation instruction]]__
   #+BEGIN_SRC shell :exports code
